@@ -1,0 +1,10 @@
+<form method=get>
+    <button type="submit">刷新</button>
+    {% if check_down_sit == 1 %}
+    <p>已经完成下载</p>
+    {% elif check_down_sit == 2 %}
+    <p>下载出现故障，原因如下{{ error_message }}</p>
+    {% else %}
+    <p>正在下载中</p>
+    {% endif %}
+</form>

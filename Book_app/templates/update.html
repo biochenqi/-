@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>book</title>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+<h1>update</h1>
+<form action="" method=post>
+    <select name="select">
+        <option selected>{{ now_col }}</option>
+        {% for key in class_cols %}
+            <option>{{ key }}</option>
+        {% endfor %}}
+    </select>
+    {% for key in head_name %}
+        <p>{{ key }}:
+        <input type="text" name="{{ key }}" autocomplete="off" value="{{ search_update[key] }}">
+        </p>
+
+    {% endfor %}
+    <input type=submit name="text">
+</form>
+<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">退出</button>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" 
+                        aria-hidden="true">×
+                </button>
+                <h4 class="modal-title" id="myModalLabel">
+                    确定退出吗？
+                </h4>
+            </div>
+            <div class="modal-body">
+                按下 ESC 按钮退出。
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" 
+                        data-dismiss="modal">关闭
+                </button>
+                <a href="{{ url_for('book.book_demo') }}"><button type="submit" class="btn btn-primary">
+                    确认退出
+                </button></a>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

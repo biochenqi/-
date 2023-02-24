@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<style type="text/css">
+    .pagination-page-info {
+    padding: .6em;
+    padding-left: 0;
+    width: 40em;
+    margin: .5em;
+    margin-left: 0;
+    font-size: 12px;
+}
+.pagination-page-info b {
+    color: black;
+    background: #6aa6ed;
+    padding-left: 2px;
+    padding: .1em .25em;
+    font-size: 150%;
+}
+</style>
+<head>
+  <div class="mutation_table">
+    <table width=1500>
+        <thead>
+            <tr>
+                <th>是否删除</th>{% for key in head_name %}
+                    <th>{{ key }}</th>
+                {% endfor %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for info in collection.find({}).skip((page-1)*per_page).limit(per_page) %}
+            <tr>
+            {% for keys,vlaues in info.items() %}
+            {% if keys != "_id" %}
+            <td>{{ vlaues }}</td>
+            {% else %}
+            <td><form method=get>
+                <button type="submit" name="delete" value="{{ vlaues }}">Delete</button>
+                <button type="submit" name="Update" value="{{ vlaues }}">Update</button>
+            </form>
+            </td>
+            {% endif %}
+            {% endfor %}
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <div style="text-align: center">
+    {{ pagination.info }}
+    {{ pagination.links }}
+</div>
+  </div>
+</head>
+</html>

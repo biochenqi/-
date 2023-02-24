@@ -1,0 +1,41 @@
+<form method=get>
+    <p>
+        是否要进行下载甲基化数据：
+        <select name="select_down" type=submit>
+            <option selected>no</option>
+            <option>yes</option>
+        </select>
+        <input type=submit>
+    </p>
+</form>
+<form action="" method=post>
+    {% if check == 1 %}
+        <p>
+            请输入需要下载的甲基化数据：
+            <input type="text" name="down_meth" value="">
+        </p>
+    {% else %}
+        <p>
+            请选择要处理的甲基化数据集
+            <select name="select_path">
+                {% for project in projects %}
+                <option>{{ project }}</option>
+                {% endfor %}
+            </select>
+            <input type=submit>
+        </p>
+    {% endif %}
+    <select name="select_cancer">
+        <option selected>尿路系统癌</option>
+        <option>肝癌</option>
+        <option>胃癌</option>
+        <option>肺癌</option>
+    </select>
+    {% for key,value in parameter.items() %}
+        <p>{{ key }}:
+        <input type="text" name="{{ key }}" autocomplete="off" value="{{ value }}">
+        </p>
+
+    {% endfor %}
+    <input type=submit name="text">
+</form>
