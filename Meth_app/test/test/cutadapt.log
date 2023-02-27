@@ -1,0 +1,118 @@
+This is cutadapt 3.4 with Python 3.6.8
+Command line parameters: -j 40 -q 20 -O 5 -m 40 -a AGATCGGAAGAGCACACGTC -A AGATCGGAAGAGCGTCGTGT /project/usr/chenqi/test/test_read/Meth_app/test/test_1.fq /project/usr/chenqi/test/test_read/Meth_app/test/test_2.fq -o test_R1.cutadapt.fastq.gz -p test_R2.cutadapt.fastq.gz
+Processing reads on 40 cores in paired-end mode ...
+Finished in 0.18 s (1753 us/read; 0.03 M reads/minute).
+
+=== Summary ===
+
+Total read pairs processed:                100
+  Read 1 with adapter:                      13 (13.0%)
+  Read 2 with adapter:                      26 (26.0%)
+Pairs that were too short:                   1 (1.0%)
+Pairs written (passing filters):            99 (99.0%)
+
+Total basepairs processed:        30,000 bp
+  Read 1:        15,000 bp
+  Read 2:        15,000 bp
+Quality-trimmed:                     165 bp (0.5%)
+  Read 1:            18 bp
+  Read 2:           147 bp
+Total written (filtered):         28,812 bp (96.0%)
+  Read 1:        14,496 bp
+  Read 2:        14,316 bp
+
+=== First read: Adapter 1 ===
+
+Sequence: AGATCGGAAGAGCACACGTC; Type: regular 3'; Length: 20; Trimmed: 13 times
+
+No. of allowed errors:
+1-9 bp: 0; 10-19 bp: 1; 20 bp: 2
+
+Bases preceding removed adapters:
+  A: 23.1%
+  C: 0.0%
+  G: 38.5%
+  T: 38.5%
+  none/other: 0.0%
+
+Overview of removed sequences
+length	count	expect	max.err	error counts
+6	1	0.0	0	1
+7	1	0.0	0	1
+10	1	0.0	1	1
+12	1	0.0	1	1
+14	1	0.0	1	1
+15	2	0.0	1	2
+22	1	0.0	2	1
+24	1	0.0	2	1
+45	1	0.0	2	0 1
+50	2	0.0	2	2
+66	1	0.0	2	1
+
+
+=== Second read: Adapter 2 ===
+
+Sequence: AGATCGGAAGAGCGTCGTGT; Type: regular 3'; Length: 20; Trimmed: 26 times
+
+No. of allowed errors:
+1-9 bp: 0; 10-19 bp: 1; 20 bp: 2
+
+Bases preceding removed adapters:
+  A: 42.3%
+  C: 46.2%
+  G: 0.0%
+  T: 11.5%
+  none/other: 0.0%
+
+Overview of removed sequences
+length	count	expect	max.err	error counts
+5	2	0.1	0	2
+6	3	0.0	0	3
+7	2	0.0	0	2
+8	1	0.0	0	1
+9	1	0.0	0	1
+10	1	0.0	1	1
+11	1	0.0	1	1
+12	1	0.0	1	1
+13	1	0.0	1	1
+14	2	0.0	1	2
+15	1	0.0	1	1
+18	1	0.0	1	1
+22	2	0.0	2	1 1
+24	1	0.0	2	0 1
+34	1	0.0	2	1
+42	1	0.0	2	1
+45	1	0.0	2	1
+50	1	0.0	2	1
+51	1	0.0	2	1
+60	1	0.0	2	0 1
+This is cutadapt 3.4 with Python 3.6.8
+Command line parameters: -j 40 -q 20 -O 5 -m 40 -g ACACGACGCTCTTCCGATCT -G GACGTGTGCTCTTCCGATCT test_R1.cutadapt.fastq.gz test_R2.cutadapt.fastq.gz -o test_R1.clean.fastq.gz -p test_R2.clean.fastq.gz
+Processing reads on 40 cores in paired-end mode ...
+Finished in 0.18 s (1864 us/read; 0.03 M reads/minute).
+
+=== Summary ===
+
+Total read pairs processed:                 99
+  Read 1 with adapter:                       0 (0.0%)
+  Read 2 with adapter:                       0 (0.0%)
+Pairs that were too short:                   0 (0.0%)
+Pairs written (passing filters):            99 (100.0%)
+
+Total basepairs processed:        28,812 bp
+  Read 1:        14,496 bp
+  Read 2:        14,316 bp
+Quality-trimmed:                       3 bp (0.0%)
+  Read 1:             2 bp
+  Read 2:             1 bp
+Total written (filtered):         28,809 bp (100.0%)
+  Read 1:        14,494 bp
+  Read 2:        14,315 bp
+
+=== First read: Adapter 1 ===
+
+Sequence: ACACGACGCTCTTCCGATCT; Type: regular 5'; Length: 20; Trimmed: 0 times
+
+=== Second read: Adapter 2 ===
+
+Sequence: GACGTGTGCTCTTCCGATCT; Type: regular 5'; Length: 20; Trimmed: 0 times

@@ -1,0 +1,14 @@
+/home/chenqi/bin/soft/bismark -p 40 --ambiguous --unmapped --score_min L,0,-0.2 --temp_dir temp/ --bowtie2 /project/NIPT/database/ -o . -1 test_R1.clean.fastq.gz -2 test_R2.clean.fastq.gz
+#########################markdup#########################
+/biostack/tools/protocols/novo-seq-0.0.1/binaries/sambamba view --format=bam -h -t 40 -F mapping_quality>=10 -o test_R1.f.bam test_R1.clean_bismark_bt2_pe.bam
+/biostack/tools/protocols/novo-seq-0.0.1/binaries/sambamba markdup -r -t 40 test_R1.f.bam test.f.dedup.bam
+/project/usr/chenqi/software/Bismark/bismark_methylation_extractor --gzip --bedGraph --no_overlap --parallel 40 test.f.dedup.bam -o meth_result
+#########################sorted##########################
+/biostack/tools/protocols/novo-seq-0.0.1/binaries/sambamba sort -t 40 -o test_R1.f.dedup.sorted.bam test.f.dedup.bam
+#########################AddGroups#######################
+java -jar /project/NIPT/NIPT_Analysis/biosoft/picard/picard-tools-1.117/AddOrReplaceReadGroups.jar I=test_R1.f.dedup.sorted.bam O=test_R1.f.dedup.sorted.re.bam RGID=test RGLB=test RGPL=illumina RGSM=test RGPU=METHY
+#########################DepthOfCoverage#################
+/home/chenqi/bin/soft/gatk DepthOfCoverage -I test_R1.f.dedup.sorted.re.bam -L /project/usr/chenqi/test/test_cancer_methlation_deal/true_urinary_data/bin/all_target_segments_covered_by_probes_Methylation_Sansure_MedStrin_V2_TE-99014536_hg19_210521025021.bed -O test.coverage -R /project/NIPT/database/hg19.fa
+#########################CalculateHsMetrics##############
+java -jar /project/NIPT/NIPT_Analysis/biosoft/picard/picard-tools-1.117/CalculateHsMetrics.jar INPUT= test_R1.f.dedup.sorted.re.bam BI=/project/usr/chenqi/test/test_cancer_methlation_deal/true_urinary_data/bin/urinary.intervals TI=/project/usr/chenqi/test/test_cancer_methlation_deal/true_urinary_data/bin/urinary.intervals OUTPUT=test_R1_dedup.picard.cov.txt REFERENCE_SEQUENCE=/project/NIPT/database/hg19.fa VALIDATION_STRINGENCY=LENIENT PER_TARGET_COVERAGE=test.coverage
+java -jar /project/NIPT/NIPT_Analysis/biosoft/picard/picard-tools-1.117/CalculateHsMetrics.jar INPUT= test_R1.f.bam BI=/project/usr/chenqi/test/test_cancer_methlation_deal/true_urinary_data/bin/urinary.intervals TI=/project/usr/chenqi/test/test_cancer_methlation_deal/true_urinary_data/bin/urinary.intervals OUTPUT=test_R1.picard.cov.txt REFERENCE_SEQUENCE=/project/NIPT/database/hg19.fa VALIDATION_STRINGENCY=LENIENT PER_TARGET_COVERAGE=test.coverage

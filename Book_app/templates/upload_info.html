@@ -1,0 +1,21 @@
+<title>hello</title>
+<p>hello</p>
+<form action="" method=post>
+    <select name="select">
+        <option selected>{{ select_head }}</option>
+        {% for key in col_name %}
+            <option>{{ key }}</option>
+        {% endfor %}}
+    </select>
+<p>书名:<input type="text" name="书名" placeholder="输入内容" autocomplete="off"></p>
+<p>作者:<input type="text" name="作者" placeholder="输入内容" autocomplete="off"></p>
+<p>借阅室:<input type="text" name="借阅室" placeholder="输入内容" autocomplete="off"></p>
+<p>编号:<input type="text" name="编号" placeholder="输入内容" autocomplete="off"></p>
+<p>备注(阅读次数):<input type="text" name="备注(阅读次数)" placeholder="输入内容" autocomplete="off"></p>
+<p>评价:<input type="text" name="评价" placeholder="输入内容" autocomplete="off"></p>
+<input type=submit name="text">
+</form>
+<p>增加内容:<a href="{{ url_for('book.book_demo') }}"><button>跳转</button></a></p>
+{% if check_book %}
+<p>该书已经储存在{{ check_book[0] }}数据库中，其具体信息如下:{{ check_book[1] }}</p>
+{% endif %}

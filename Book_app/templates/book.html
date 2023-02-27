@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>book</title>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+        /*设置滚动条宽度*/
+        ::-webkit-scrollbar {
+            width: 8px;
+            background-color: transparent;
+        }
+        /* 滚动条颜色 */
+        ::-webkit-scrollbar-thumb {
+            background-color: #27314d;
+        }
+        table thead th, table thead td,table tbody th,table tbody td {
+            height: 50px;
+            text-align: center;
+            border: 1px solid gray;
+        }
+ 
+        table thead {
+            color: white;
+            background-color: #38F;
+        }
+        table tbody {
+            display: block;
+            width: calc(100% + 8px); /*这里的8px是滚动条的宽度*/
+            height: 500px;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        table thead tr, table tbody tr, table tfoot tr {
+            box-sizing: border-box;
+            table-layout: fixed;
+            display: table;
+            width: 100%;
+        }
+        table tfoot {
+            height: 3px;
+            background-color: #000000;
+        }
+    </style>
+</head>
+<body>
+<h2>书籍查询</h2>
+<form method=get>
+    <select name="select">
+        <option selected>{{ select_head }}</option>
+        {% for key in col_name %}
+            <option>{{ key }}</option>
+        {% endfor %}}
+    </select>
+    <input type="submit" name="text">
+</form>
+<form action="" method=post>
+    <select name="select">
+        {% for key in head_name %}
+            <option>{{ key }}</option>
+        {% endfor %}}
+    </select>
+    <input type="text" name="path_upload" placeholder="输入查询的内容" autocomplete="off">
+    <input type=submit name="text">
+</form>
+
+<p>增加内容:<a href="{{ url_for('book.upload_info') }}"><button>跳转</button></a></p>
+
+<div class="mutation_table">
+    <table width=1500>
+        <thead>
+            <tr>
+                <th>是否删除</th>{% for key in head_name %}
+                    <th>{{ key }}</th>
+                {% endfor %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for info in table_info %}
+            <tr>
+            {% for keys,vlaues in info.items() %}
+            {% if keys != "_id" %}
+            <td>{{ vlaues }}</td>
+            {% else %}
+            <td><form method=get>
+                <button type="submit" name="delete" value="{{ vlaues }}">Delete</button>
+                <button type="submit" name="Update" value="{{ vlaues }}">Update</button>
+            </form>
+            </td>
+            {% endif %}
+            {% endfor %}
+            </tr>
+            {% endfor %}
+        </tbody>
+        <tfoot><tr><td colspan="7"></td></tr></tfoot>
+    </table>
+  </div>
+</body>
+</html>
